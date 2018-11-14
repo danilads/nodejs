@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>MobileList</title>
+
+</head>
+<body>
+	<div style="border: 1px solid black; padding:100px;">
+    <a id='downLink' download='myFile.pdf' style="display:none;" /> 
+    <a href="#" onclick="downloadPDF();" title='myFile.pdf'>download</a>
+    <a href="#" onclick="openInNewWindow();" title='myFile.pdf'>open in new window</a>
+</div>
+	<script>
+		function openInNewWindow() {
+			let win = window.open();
+			win.document.write('<iframe src="' + pdf + '" frameborder="0" style="border:0; top:0; left:0; bottom:0; right:0; width:100%; height:100%;" allowfullscreen></iframe>');
+	        win.document.querySelector('body').style = "margin: 0; overflow: hidden;";
+	        setTimeout(() => win.close(), 100);
+		}
+		
+        
+		window.downloadPDF = function downloadPDF() {
+			var lnk = document.getElementById('downLink');
+			lnk.href = pdf;
+			lnk.click();
+		}
+		var pdf = 'data:application/octet-stream;base64,JVBERi0xLjIgCjkgMCBvYmoKPDwKPj4Kc3RyZWFtCkJULyA5IFRmKFRlc3QpJyBFVAplbmRzdHJlYW0KZW5kb2JqCjQgMCBvYmoKPDwKL1R5cGUgL1BhZ2UKL1BhcmVudCA1IDAgUgovQ29udGVudHMgOSAwIFIKPj4KZW5kb2JqCjUgMCBvYmoKPDwKL0tpZHMgWzQgMCBSIF0KL0NvdW50IDEKL1R5cGUgL1BhZ2VzCi9NZWRpYUJveCBbIDAgMCA5OSA5IF0KPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1BhZ2VzIDUgMCBSCi9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iagp0cmFpbGVyCjw8Ci9Sb290IDMgMCBSCj4+CiUlRU9G';
+	</script>
+</body> 
+</html>
