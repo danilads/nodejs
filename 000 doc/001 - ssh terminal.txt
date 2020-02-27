@@ -1,3 +1,6 @@
+00 - HotKeys
+   -  control + C - закрыть выполнение
+
 01 - Первый вход
    - ssh root@your_server_ip
 
@@ -9,3 +12,16 @@
 
 04 - Смена пароля (Запускать после того, как зашли)
    - passwd
+
+05 - Слушать порты
+   - netstat -tulpn | grep LISTEN
+
+06 - Task Manager (нагрузка) htop - красивый интерфейс
+   - top
+   - htop
+
+07 - Завершить процесс — завершить процесс с pid=1234 (посмотреть в Task Manager)
+   - kill 1234 
+
+08 - Cменить текущий каталог на /etc/nginx
+   - cd /etc/nginx 
