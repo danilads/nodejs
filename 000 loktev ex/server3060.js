@@ -1,3 +1,4 @@
+// node server3060.js
 const express = require('express');
 
 const webserver = express();
@@ -6,11 +7,17 @@ webserver.use(express.urlencoded({extended:true}));
 
 const port = 3060;
 
-webserver.get('/service1', (req, res) => { 
+webserver.get('', (req, res) => { 
     // при обращении по этому УРЛу - просто отдаём строку
     // миддлварь urlencoded ничего не меняла, она реагирует на конкретный формат запроса - application/x-www-form-urlencoded
     console.log('service1 called');
-    res.send("service1 ok!");
+    res.send(`
+    <form method=POST action="http://localhost:3060/service6" target=example>
+        ваш логин: <input type=text name=login><br/>
+        ваш возраст: <input type=number name=age><br/>
+        <input type=submit value="локальный POST-сервис /service6 отдаёт строку, зависящую от POST-параметров запроса">
+</form>
+`);
 });
 
 webserver.post('/service6', (req, res) => { 
