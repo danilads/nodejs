@@ -1,5 +1,4 @@
-//(запуск на локальной машине) node 001-http.js
-//(запуск на сервере) node 001-http.js &
+// node 002-http.js
 
 var http = require('http');
 

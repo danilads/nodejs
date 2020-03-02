@@ -1,5 +1,13 @@
-// запуск: node ./001-ex.js arg1 arg2
-// запуск: node 001-ex.js arg1 arg2
+// node 001-args.js
+// node 001-args.js arg2
+// node 001-args.js arg2 arg3
+
+
+// node 001-args.js a
+// node 001-args.js b
+// node 001-args.js c
+// node 001-args.js d 500
+
 
 // arg1==="a" - ничего не делать
 // arg1==="b" - сразу выход
@@ -21,8 +29,10 @@ switch ( arg1 ) {
         console.log("arg1=b - terminating immediately");
         process.exit(); // немедленно остановить выполнение программы
         // break; - можно не писать - выполнение сюда не дойдёт
+        // так лучше не заканчивать!
     case "c":
         console.log("arg1=c - terminating carefully");
+        console.log("process.pid",process.pid);
         process.kill(process.pid, 'SIGTERM'); // корректно остановить программу
         break; // надо писать - выполнение сюда МОЖЕТ дойти
     case "d":
