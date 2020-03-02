@@ -8,7 +8,7 @@ const webserver = express(); // создаём веб-сервер
 //для работы с формами
 webserver.use(express.urlencoded({extended:true})); 
 
-const port = 8080;
+const port = 3000;
 const formType = "GET"; //"GET" "POST"
 
 
