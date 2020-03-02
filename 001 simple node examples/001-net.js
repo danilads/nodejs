@@ -1,3 +1,4 @@
+//node 000-simpleServer.js &
 var net=require('net');
 
 var server=net.createServer( function(socket) {
