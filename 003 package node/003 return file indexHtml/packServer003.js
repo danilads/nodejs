@@ -1,4 +1,4 @@
-//node packServer002.js
+//node packServer003.js
 
 const express = require('express');
 const webserver = express();
@@ -10,5 +10,5 @@ webserver.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-webserver.listen(port, () => console.log('Example app listening on port '+port));
+webserver.listen(port, () => console.log('Listening on port '+port));
 

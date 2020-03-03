@@ -1,4 +1,4 @@
-//node packServer003.js
+//node packServer001.js
 
 const express = require('express');
 
@@ -50,6 +50,4 @@ const port = 8080;
 
 
 ////----  просим веб-сервер слушать входящие HTTP-запросы на этом порту
-  webserver.listen(port,()=>{ 
-      console.log("web server running on port "+port);
-  }); 
+  webserver.listen(port, () => console.log('Listening on port '+port));

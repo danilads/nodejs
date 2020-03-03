@@ -1,0 +1,7 @@
+2020-3-3 18:39:33 web server running on port 3070
+2020-3-3 18:40:38 [3070] service1 called
+2020-3-3 18:44:29 web server running on port 3070
+2020-3-3 18:44:34 [3070] service1 called
+2020-3-3 18:46:42 [3070] service2 called, get pars: {"par1":"5","par2":"sss"}
+2020-3-3 18:47:35 [3070] service3 called
+2020-3-3 18:47:42 [3070] service3 called

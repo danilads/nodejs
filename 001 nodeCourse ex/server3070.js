@@ -1,5 +1,5 @@
 const express = require('express');
-const fs = require('fs');
+const fs = require('fs'); //file system
 const path = require('path');
 const os = require('os');
 
@@ -8,7 +8,7 @@ const webserver = express();
 webserver.use(express.urlencoded({extended:true}));
 
 const port = 3070;
-const logFN = path.join(__dirname, '_server.log');
+const logFN = path.join(__dirname, '_server.log'); // /Users/daniil/Documents/Repo/nodejs/001-ex/_server.log
 
 // пишет строку в файл лога и одновременно в консоль
 // origin - программа или модуль, который выводит строку
@@ -26,6 +26,7 @@ function logLineSync(logFilePath,logLine) {
 
 webserver.get('/service1', (req, res) => { 
     // при обращении по этому УРЛу - просто отдаём строку
+    console.log('---logFN',logFN);
     logLineSync(logFN,`[${port}] `+'service1 called');
     res.send("service1 ok!");
 });

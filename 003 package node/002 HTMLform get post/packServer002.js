@@ -5,7 +5,7 @@ const express = require('express');
 const webserver = express(); // создаём веб-сервер
 
 //!!!ОБЯЗАТЕЛЬНО
-//для работы с формами
+//для работы с формами (чтобы можно было читать req.query / req.body)
 webserver.use(express.urlencoded({extended:true})); 
 
 const port = 8080;
@@ -58,6 +58,4 @@ webserver.post('/valid', (req, res) => {
 
 
 ////----  просим веб-сервер слушать входящие HTTP-запросы на этом порту
-webserver.listen(port,()=>{ 
-    console.log("web server running on port "+port);
-}); 
+webserver.listen(port, () => console.log('Listening on port '+port));
