@@ -4,7 +4,7 @@ const express = require('express');
 
 const webserver = express(); // создаём веб-сервер
 
-const port = 3050;
+const port = 8080;
 
 ////----01  http://localhost:3050/ex1
   webserver.get('/ex1', (req, res) => { 

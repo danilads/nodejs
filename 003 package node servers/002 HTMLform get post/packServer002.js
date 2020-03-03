@@ -1,4 +1,4 @@
-//node homework001.js
+//node packServer002.js
 
 const express = require('express');
 
@@ -8,7 +8,7 @@ const webserver = express(); // создаём веб-сервер
 //для работы с формами
 webserver.use(express.urlencoded({extended:true})); 
 
-const port = 3000;
+const port = 8080;
 const formType = "GET"; //"GET" "POST"
 
 
