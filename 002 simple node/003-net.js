@@ -1,7 +1,7 @@
-// node 001-net.js
+// node 003-net.js
 
-var net = require('net');
-var server = net.createServer(function(socket) { 
+let net = require('net');
+net.createServer(function(socket) { 
    console.log('Соединение с '+socket.remoteAddress+':'+socket.remotePort);
 }).listen(8080);
 

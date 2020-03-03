@@ -10,5 +10,5 @@ webserver.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-webserver.listen(port, () => console.log('Example app listening on port 3000!'));
+webserver.listen(port, () => console.log('Example app listening on port '+port));
 
