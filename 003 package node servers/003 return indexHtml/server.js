@@ -1,10 +1,12 @@
 const express = require('express');
-const app = express();
+const webserver = express();
 var path = require("path");
+const port = 3000;
 
-app.get('/', (req, res) => {
+webserver.get('/', (req, res) => {
 	console.log('Пришёл запрос от клиента');
 	res.sendFile(path.join(__dirname+'/index.html'));
 });
 
- app.listen(3000, () => console.log('Example app listening on port 3000!'));
+webserver.listen(3000, () => console.log('Example app listening on port 3000!'));
+
