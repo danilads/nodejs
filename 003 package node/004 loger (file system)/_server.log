@@ -1,4 +1,0 @@
-2020-3-3 19:00:16 web server running on port 3070
-2020-3-3 19:26:52 [8080] service2 called, get pars: {}
-2020-3-3 19:28:33 [8080] service2 called, get pars: {}
-2020-3-3 19:28:44 [8080] service2 called, get pars: {"arg1":"5","arg2":"sss"}
