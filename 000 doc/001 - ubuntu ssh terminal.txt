@@ -32,5 +32,8 @@
 10 - Cменить текущий каталог на /etc/nginx
    - cd /etc/nginx 
 
-11 - Установка от имени "Супер Юзера" sudo (npm/node/git)
+11 - Установка пакета от имени "Супер Юзера" sudo (npm/node/git/htop)
    - sudo apt install nodejs
+
+12 - Удалить пакет от имени "Супер Юзера" sudo (npm/node/git/htop)
+   - sudo apt-get remove npm
