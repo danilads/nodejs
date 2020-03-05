@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "myServDev": "cross-env NODE_ENV=development VAR1=aaa node packServer008.js",
+    "myServProd": "cross-env NODE_ENV=production node packServer008.js"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "cross-env": "7.0.1"
+  }
+}
