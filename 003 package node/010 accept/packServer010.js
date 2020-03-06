@@ -10,11 +10,12 @@ const port = 8080;
 
 webserver.get('/', (req, res) => {
   res.send(`
-  <button onclick="callJson()">callJson</button>
-  <button onclick="callXml()">callXml</button>
-  <button onclick="callText()">callText</button>
-  <div style="color:red">hello</div>
-  <script>
+<button onclick="callJson()">callJson</button>
+<button onclick="callXml()">callXml</button>
+<button onclick="callText()">callText</button>
+<div style="color:red">hello</div>
+<script>
+
 const host = window.location.href;
 async function callJson() {
     const fetchOptions={
@@ -35,8 +36,11 @@ async function callXml() {
     };
     const response=await fetch(host+'req',fetchOptions);
     const xmlStr=await response.text();
-    const data=parseXml(xmlStr);
-    console.log("получены данные в формате xml",data);
+
+    let parser = new DOMParser();
+    parsedXml = parser.parseFromString(xmlStr,"text/xml");
+
+    console.log("получены данные в формате xml",parsedXml);
 }
 
 async function callText() {
@@ -45,101 +49,10 @@ async function callText() {
     console.log("получены данные в текстовом формате",data);
 }
 
-function parseXml(xml, arrayTags) {
-    var dom = null;
-    if (window.DOMParser) {
-            dom = (new DOMParser()).parseFromString(xml, "text/xml");
-    }
-    else
-            if (window.ActiveXObject)
-            {
-                    dom = new ActiveXObject('Microsoft.XMLDOM');
-                    dom.async = false;
-                    if (!dom.loadXML(xml))
-                    {
-                            throw dom.parseError.reason + " " + dom.parseError.srcText;
-                    }
-            }
-            else
-            {
-                    throw "cannot parse xml string!";
-            }
-
-    function isArray(o)
-    {
-            return Object.prototype.toString.apply(o) === '[object Array]';
-    }
-
-    function parseNode(xmlNode, result)
-    {
-            if (xmlNode.nodeName == "#text") {
-                    var v = xmlNode.nodeValue;
-                    if (v.trim()) {
-                    result['#text'] = v;
-                    }
-                    return;
-            }
-
-            var jsonNode = {};
-            var existing = result[xmlNode.nodeName];
-            if(existing)
-            {
-                    if(!isArray(existing))
-                    {
-                            result[xmlNode.nodeName] = [existing, jsonNode];
-                    }
-                    else
-                    {
-                            result[xmlNode.nodeName].push(jsonNode);
-                    }
-            }
-            else
-            {
-                    if(arrayTags && arrayTags.indexOf(xmlNode.nodeName) != -1)
-                    {
-                            result[xmlNode.nodeName] = [jsonNode];
-                    }
-                    else
-                    {
-                            result[xmlNode.nodeName] = jsonNode;
-                    }
-            }
-
-            if(xmlNode.attributes)
-            {
-                    var length = xmlNode.attributes.length;
-                    for(var i = 0; i < length; i++)
-                    {
-                            var attribute = xmlNode.attributes[i];
-                            jsonNode[attribute.nodeName] = attribute.nodeValue;
-                    }
-            }
-
-            var length = xmlNode.childNodes.length;
-            for(var i = 0; i < length; i++)
-            {
-                    parseNode(xmlNode.childNodes[i], jsonNode);
-            }
-    }
-
-    var result = {};
-    for (let i = 0; i < dom.childNodes.length; i++)
-    {
-            parseNode(dom.childNodes[i], result);
-    }
-
-    return result;
-}
-
-  </script>
+</script>
   `);
 });
 webserver.get('/req', (req, res) => { 
-  console.log(`[${port}] `+"service5 called");
-
-  // т.к. к этому сервису идёт AJAX-запрос со страниц с другим происхождением (origin), надо явно это разрешить
-  res.setHeader("Access-Control-Allow-Origin","*"); 
-
   console.log("request headers",req.headers);
   const clientAccept=req.headers.accept;
   if ( clientAccept==="application/json" ) {
