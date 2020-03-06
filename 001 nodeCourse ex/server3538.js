@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const { logLineSync } = require('../../utils/utils');
+const  logLineSync  = console.log
 
 const webserver = express();
 
