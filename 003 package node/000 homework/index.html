@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8" />
+  <title></title>
+  <script src="https://unpkg.com/react@16.8.6/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.5.4/babel.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+	<style>
+		.wrap{
+			display:flex;
+		}
+		.wrap>div{
+			margin: 5px;
+		}
+		.wrap>div>div:first-child{
+			font-weight: 800;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+  <script type="text/babel">
+  let host = window.location.href;
+  
+	class Main extends React.Component {
+    state={
+			variants:[],
+			stats: {}
+    };
+    componentDidMount(){
+			this.getVariants();
+			this.getStats();
+		}
+		getVariants = async ()=>{
+			let result = await axios({
+				url: host+'variants',
+				method: 'get'
+			})
+			.then(function (response) {
+				if(response.status === 200){
+					return response.data;
+				}
+			})
+			.catch(function (error) {
+				return [];
+			})
+			this.setState({variants:result});
+		}
+		getStats = async ()=>{
+			console.log('--works');
+			let result = await axios({
+				url: host+'stat',
+				method: 'post'
+			})
+			.then(function (response) {
+				console.log('--!',response);
+				if(response.status === 200){
+					console.log('--!',response.data);
+					return response.data;
+				}
+			})
+			.catch(function (error) {
+				console.log('--!error',error);
+				return {};
+			})
+			console.log('--!result',result);
+			this.setState({stats:result});
+		}
+		
+		
+		//отправляем, полученый результат записываем
+		vote=async(id)=>{
+			let result = await axios({
+				url: host+'vote',
+				method: 'post',
+				data: {id:id}
+			})
+			.then(function (response) {
+				return response;				
+			})
+			.catch(function (error) {
+				return [];
+			})
+			if(result.status === 200){
+				this.getStats();
+			}
+		}
+
+		renderForm=(arr,obj)=>{
+			//team
+			let team = [<div>Команды</div>];
+			let score = [<div>Голоса</div>];
+			let buttons = [<div>Голосовать</div>];
+			arr.forEach(it=>{
+				team.push(<div>{it.name}</div>);
+				score.push(<div>{obj[it.id]}</div>)
+				buttons.push(<div><button onClick={()=>{this.vote(it.id)}}>+</button></div>)
+			})
+
+			return [<div>{team}</div>,<div>{score}</div>,<div>{buttons}</div>];
+		};
+		render() {
+			let {variants,stats} = this.state;
+      return (<div>
+						<h2>Голосуем - у какой команды есть больше всего шансов победить в турнире по доте</h2>
+						<div className={'wrap'}>{this.renderForm(variants,stats)}</div>
+			</div>);
+		}
+	}
+	//App Js
+    ReactDOM.render(
+        <Main/>
+        ,document.getElementById('container')
+    );
+	</script>
+</body> 
+</html>
