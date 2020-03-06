@@ -4,7 +4,7 @@
 const express = require('express');
 const fs = require('fs'); //file system
 const path = require('path'); //путь
-const os = require('os'); //нужен для символа пробела
+
 
 const webserver = express();
 
@@ -12,15 +12,6 @@ const webserver = express();
 webserver.use(express.json()); // мидлварь, умеющая обрабатывать тело запроса в формате JSON
 
 const port = process.argv[2];
-
-//https://github.com/drahunpavel/web-project-architecture-example/blob/master/3095/server.js
-
-// просто надо сделать 3 страницы
-// json file
-// /variants - get
-// /stat - post
-// /vote - post
-
 
 
 webserver.get('/', (req, res) => { 
