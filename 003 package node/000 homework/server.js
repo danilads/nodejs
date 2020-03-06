@@ -1,5 +1,5 @@
-//npx nodemon homework.js 
-//node homework.js 
+//npx nodemon server.js 8080
+//node server.js 8080
 
 const express = require('express');
 const fs = require('fs'); //file system
@@ -11,7 +11,7 @@ const webserver = express();
 //для axios 
 webserver.use(express.json()); // мидлварь, умеющая обрабатывать тело запроса в формате JSON
 
-const port = 8080;
+const port = process.argv[2];
 
 //https://github.com/drahunpavel/web-project-architecture-example/blob/master/3095/server.js
 
