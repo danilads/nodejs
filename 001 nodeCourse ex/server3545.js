@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const { logLineSync } = require('../../utils/utils');
+const logLineSync = console.log
 
 const webserver = express();
 
@@ -10,7 +10,7 @@ webserver.use(express.json());
 webserver.use(bodyParser.text());
 webserver.use(anyBodyParser);  // это самописная мидлварь, которая тело запроса в виде строки помещает в req.rawBody
 
-const port = 3545;
+const port = 8080;
 const logFN = path.join(__dirname, '_server.log');
 
 // т.к. к /service1 будет обращение со страниц с другим origin через AJAX методом POST, то браузер будет делать предварительный (preflight) запрос методом OPTIONS

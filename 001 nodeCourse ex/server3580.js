@@ -3,7 +3,7 @@ const path = require('path');
 
 const webserver = express();
 
-const port = 3580;
+const port = 8080;
 
 webserver.use(
     express.static(path.resolve(__dirname,"static"))

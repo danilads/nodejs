@@ -5,7 +5,8 @@ const multer = require('multer'); // для обработки тел запро
 const progress = require('progress-stream'); // для отслеживания прогресса приёма файла (вариант №1)
 const busboy = require('connect-busboy'); // для отслеживания прогресса приёма файла (вариант №2)
 
-const { logLineSync, getRandomFileName } = require('../../utils/utils');
+const logLineSync = console.log
+const { getRandomFileName } = require('../../utils/utils');
 
 const webserver = express();
 
@@ -14,7 +15,7 @@ webserver.use(express.urlencoded({extended:true}));
 // миддлварь для работы с multipart/form-data; если потребуется сохранение загруженных файлов - то в папку uploads
 const upload = multer( { dest: path.join(__dirname,"uploads") } ); 
 
-const port = 3550;
+const port = 8080;
 const logFN = path.join(__dirname, '_server.log');
 
 webserver.get('/service1', (req, res) => { 

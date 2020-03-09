@@ -2,11 +2,11 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
-const { logLineSync } = require('../../utils/utils');
+const logLineSync = console.log
 
 const webserver = express();
 
-const port = 3585;
+const port = 8080;
 const logFN = path.join(__dirname, '_server.log');
 
 webserver.post('/service1', (req, res) => { 
