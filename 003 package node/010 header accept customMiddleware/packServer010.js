@@ -126,6 +126,7 @@ webserver.post('/send', (req, res) => {
   }
   else if ( contentType==="application/xml" ) {
       console.log("получено тело запроса в формате XML");
+      console.log("мидлварь оставила следующий коммент: "+res.locals.anybodycomment);
       console.log(req.myCustom); // мидлварь anyBodyParser поместила тело запроса в req.myCustom; есть и специализированные мидлвари для этого
   }
   else {
@@ -139,6 +140,7 @@ webserver.listen(port,()=>{
   console.log("web server running on port "+port);
 });
 
+//CUSTOM MIDDLEWARE
 function anyBodyParser(req, res, next) {
   const contentType=req.headers['content-type'];
   if ( contentType==="application/xml" ) {
@@ -149,6 +151,8 @@ function anyBodyParser(req, res, next) {
       });
       req.on('end', function() {
           req.myCustom = data;
+          // оставляем некие данные прикладного назначения для следующих обработчиков в цепочке
+          res.locals.anybodycomment='xml->myCustom done, '+data.length+' bytes'; 
           next();  // myCustom заполнено, вызываем следующую мидлварь в цепочке мидлварей
       });
   }
