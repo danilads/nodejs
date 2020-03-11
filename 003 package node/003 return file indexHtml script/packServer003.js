@@ -5,14 +5,15 @@ const webserver = express();
 var path = require("path");
 const port = 8080;
 
-webserver.use(express.static('public'));//Открываем доступ к папке src, чтобы index.html мог достучаться
+//Открываем доступ к папке public (там должна храниться вся наша раздача)
+webserver.use(express.static('public')); 
+
 
 webserver.get('/', (req, res) => {
 	console.log('Пришёл запрос от клиента');
-	
-	res.setHeader("Access-Control-Allow-Origin", "*");
-	res.sendFile(path.join(__dirname+'/index.html'));
+	res.sendFile(path.join(__dirname,'public','/index.html'));
 });
+
 
 webserver.listen(port, () => console.log('Listening on port '+port));
 
